@@ -1,9 +1,14 @@
+import { signOut } from "firebase/auth";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
+import auth from "../../firebase.init";
 import "./Header.css";
-
+import userPicture from '../../images/user.png'
+import userLoggedInPicture from '../../images/loginuser.jpg'
 const Header = () => {
-  
+  const [user] = useAuthState(auth);
+  console.log(user);
   return (
     <div>
       <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
@@ -29,8 +34,8 @@ const Header = () => {
               <span className="sr-only">Open user menu</span>
               <img
                 className="w-8 h-8 rounded-full"
-                src="/docs/images/people/profile-picture-3.jpg"
-                alt="user"
+                src={user?userLoggedInPicture:userPicture}
+                alt={user?.name}
               />
             </button>
 
@@ -40,49 +45,42 @@ const Header = () => {
               data-popper-reference-hidden=""
               data-popper-escaped=""
               data-popper-placement="top"
-              style={{position: 'absolute', inset: `auto auto 0px 0px`, margin: `0px`, transform: 'translate(1246px, 793px)'}}
+              style={{
+                position: "absolute",
+                inset: `auto auto 0px 0px`,
+                margin: `0px`,
+                transform: "translate(1246px, 793px)",
+              }}
             >
               <div className="py-3 px-4">
                 <span className="block text-sm text-gray-900 dark:text-white">
-                  Bonnie Green
+                    {user?.name}
                 </span>
                 <span className="block text-sm font-medium text-gray-500 truncate dark:text-gray-400">
-                  name@flowbite.com
+                {user?.email}
                 </span>
               </div>
               <ul className="py-1" aria-labelledby="dropdown">
-                <li>
-                  <Link
-                    to="#"
-                    className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                  >
-                    Dashboard
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="#"
-                    className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                  >
-                    Settings
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="#"
-                    className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                  >
-                    Earnings
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="#"
-                    className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                  >
-                    Sign out
-                  </Link>
-                </li>
+                {user ? (
+                  <li>
+                    <Link
+                      onClick={() => signOut(auth)}
+                      to="/"
+                      className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                    >
+                      Sign out
+                    </Link>
+                  </li>
+                ) : (
+                  <li>
+                    <Link
+                      to="/login"
+                      className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                    >
+                      Login
+                    </Link>
+                  </li>
+                )}
               </ul>
             </div>
             <button
@@ -136,7 +134,7 @@ const Header = () => {
               <li>
                 <Link
                   to="/blogs"
-                  className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-sky-500 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" 
+                  className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-sky-500 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 >
                   Blogs
                 </Link>
