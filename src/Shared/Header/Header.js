@@ -6,13 +6,13 @@ import "./Header.css";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
-    <div class="px-4 py-3 sm:max-w-xl md:max-w-full  mx-auto shadow-md w-full">
+    <div class="px-4 py-3 sm:max-w-xl md:max-w-full  mx-auto shadow-md w-full sticky top-0 bg-white">
       <div class="relative flex items-center justify-between lg:justify-center lg:space-x-16">
         <ul class="flex items-center hidden space-x-8 lg:flex">
           <li>
             <Link
               to="/home"
-              class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+              class="font-medium text-xl hover:underline transition-all tracking-wide text-gray-700 duration-200 hover:text-sky-500"
             >
               Home
             </Link>
@@ -20,7 +20,7 @@ const Header = () => {
           <li>
             <Link
               to="/blogs"
-              class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+              class="font-medium text-xl hover:underline transition-all tracking-wide text-gray-700 duration-200 hover:text-sky-500"
             >
               Blogs
             </Link>
@@ -28,7 +28,7 @@ const Header = () => {
           <li>
             <Link
               to="/about"
-              class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+              class="font-medium text-xl hover:underline transition-all tracking-wide text-gray-700 duration-200 hover:text-sky-500"
             >
               About
             </Link>
@@ -40,7 +40,7 @@ const Header = () => {
           title="Sparrow Photography"
           class="flex items-center justify-center"
         >
-          <img className="w-[20%]" src={logo} alt="" />{" "}
+          <img className="w-[25%]" src={logo} alt="" />{" "}
           <span className="flex flex-col logo-font">
             <p>Sparrow </p>
             <p> Photography</p>
@@ -50,7 +50,7 @@ const Header = () => {
           <li>
             <Link
               to="/login"
-              class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+              class="font-medium text-xl hover:underline transition-all tracking-wide text-gray-700 duration-200 hover:text-sky-500"
             >
               Sign in
             </Link>
@@ -58,7 +58,7 @@ const Header = () => {
           <li>
             <Link
               to="/signup"
-              class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+              class="font-medium text-xl hover:underline transition-all tracking-wide text-gray-700 duration-200 hover:text-sky-500"
             >
               Sign up
             </Link>
@@ -123,7 +123,7 @@ const Header = () => {
                     <li>
                       <Link
                         to="/home"
-                        class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-sky-500 hover:underline"
                       >
                         Home
                       </Link>
@@ -131,7 +131,7 @@ const Header = () => {
                     <li>
                       <Link
                         to="/blogs"
-                        class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-sky-500 hover:underline"
                       >
                         Blogs
                       </Link>
@@ -139,7 +139,7 @@ const Header = () => {
                     <li>
                       <Link
                         to="/about"
-                        class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-sky-500 hover:underline"
                       >
                         About
                       </Link>
@@ -148,7 +148,7 @@ const Header = () => {
                     <li>
                       <Link
                         to="/login"
-                        class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-sky-500 hover:underline"
                       >
                         Sign in
                       </Link>
@@ -156,7 +156,7 @@ const Header = () => {
                     <li>
                       <Link
                         to="/signup"
-                        class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-sky-500 hover:underline"
                       >
                         Sign Up
                       </Link>
