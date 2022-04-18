@@ -37,6 +37,8 @@ const About = () => {
               </svg>{" "}
               Passionately I am a Web Developer.
             </p>
+            <div className="mx-auto mt-3 lg:mx-0 w-4/5 pt-3 border-b-2 border-green-500 opacity-25"></div>
+            <p>As I am a job holder i am doing my Practice at night and Finishing My practice Lesson By Programing Hero. I am determined to overcome all the hinderance to achieve the Web Developer Goal. </p>
             <p className="pt-4 text-gray-600 text-xs lg:text-sm flex items-center justify-center lg:justify-start">
               <svg
                 className="h-4 fill-current text-green-700 pr-4"

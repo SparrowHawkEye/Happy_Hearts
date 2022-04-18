@@ -1,16 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
-  useCreateUserWithEmailAndPassword,
   useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import auth from "../../firebase.init";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { sendPasswordResetEmail } from "firebase/auth";
 import Loading from "../../Shared/RequiredAuth/Loading";
 
 const Login = () => {
@@ -29,9 +27,9 @@ const Login = () => {
 
   const [signInWithEmail, user, loading, hookError] =
     useSignInWithEmailAndPassword(auth);
-  const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] =
+  const [signInWithGoogle,  errorGoogle] =
     useSignInWithGoogle(auth);
-  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+  const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
 
   const handleEmail = (e) => {
     const emailRegex = /\S+@\S+\.\S+/;
