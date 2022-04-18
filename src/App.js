@@ -3,12 +3,12 @@ import "./App.css";
 
 import About from "./Pages/About/About";
 import Blogs from "./Pages/Blogs/Blogs";
-import Home from "./Pages/Home/Home";
+import Home from "./Pages/Home/Home/Home";
 import Login from "./Pages/Login/Login";
 import NotFound from "./Pages/NotFound/NotFound";
 import SignUp from "./Pages/SignUp/SignUp";
-import CheckOut from "./Shared/CheckOut/CheckOut";
-import CheckOutDetails from "./Shared/CheckOut/CheckOutDetails";
+import CheckOut from "./Pages/CheckOut/CheckOut";
+import CheckOutDetails from "./Pages/CheckOut/CheckOutDetails";
 import Footer from "./Shared/Footer/Footer";
 import Header from "./Shared/Header/Header";
 import RequiredAuth from "./Shared/RequiredAuth/RequiredAuth";
