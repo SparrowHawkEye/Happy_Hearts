@@ -209,7 +209,7 @@ const Login = () => {
                   </p>
                   <div className="mt-4 mb-2 sm:mb-4">
                     <button
-                      // to="/"
+                      to="/"
                       type="submit"
                       className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-sky-400 hover:bg-sky-700 focus:shadow-outline focus:outline-none"
                     >
