@@ -1,6 +1,15 @@
-import React, { useState } from "react";
-import { useCreateUserWithEmailAndPassword, useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import React, { useEffect, useRef, useState } from "react";
+import {
+  useCreateUserWithEmailAndPassword,
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
+import { Link, Navigate, useLocation } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import auth from "../../firebase.init";
+import { FcGoogle } from "react-icons/fc";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { sendPasswordResetEmail } from "firebase/auth";
 
 const Login = () => {
   const [userInfo, setUserInfo] = useState({
@@ -17,8 +26,12 @@ const Login = () => {
   const [showPass, setShowPass] = useState(false);
 
   const [signInWithEmail, user, loading, hookError] =
-  useSignInWithEmailAndPassword(auth);
-
+    useSignInWithEmailAndPassword(auth);
+  const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] =
+    useSignInWithGoogle(auth);
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+  
   const handleEmail = (e) => {
     const emailRegex = /\S+@\S+\.\S+/;
     const validEmail = emailRegex.test(e.target.value);
@@ -36,19 +49,46 @@ const Login = () => {
     const validPassword = passwordRegex.test(e.target.value);
 
     if (validPassword) {
-        setUserInfo({ ...userInfo, password: e.target.value });
-        setErrors({ ...errors, password: "" });
+      setUserInfo({ ...userInfo, password: e.target.value });
+      setErrors({ ...errors, password: "" });
     } else {
-        setErrors({ ...errors, password: "Minimum 6 characters!" });
-        setUserInfo({ ...userInfo, password: "" });
+      setErrors({ ...errors, password: "Minimum 6 characters!" });
+      setUserInfo({ ...userInfo, password: "" });
     }
-};
+  };
+  const emailRef = useRef("");
+  const passwordRef = useRef("");
 
-const handleLogin = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
     signInWithEmail(userInfo.email, userInfo.password);
-};
+  };
 
+  if (user) {
+    Navigate(from, { replace: true });
+  }
+
+  const resetPassword = async () => {
+    const email = emailRef.current.value;
+    await sendPasswordResetEmail(email);
+    alert("Sent email");
+  };
+  useEffect(() => {
+    const error = hookError || errorGoogle;
+    if (error) {
+      switch (error?.code) {
+        case "auth/invalid-email":
+          toast("Invalid email provided, please provide a valid email");
+          break;
+
+        case "auth/invalid-password":
+          toast("Wrong password. Intruder!!");
+          break;
+        default:
+          toast("something went wrong");
+      }
+    }
+  }, [hookError, errorGoogle]);
 
   return (
     <div className="relative">
@@ -97,12 +137,9 @@ const handleLogin = (e) => {
             <div className="w-full max-w-xl xl:px-8 xl:w-5/12">
               <div className="bg-white rounded shadow-2xl p-7 sm:p-10">
                 <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
-                  Sign up for updates
+                  Log In for Appointment ❤️
                 </h3>
-                <form
-                  onSubmit={handleLogin
-                  }
-                >
+                <form onSubmit={handleLogin}>
                   <div className="mb-1 sm:mb-2">
                     <label
                       htmlFor="email"
@@ -111,6 +148,7 @@ const handleLogin = (e) => {
                       Email
                     </label>
                     <input
+                      ref={emailRef}
                       onBlur={handleEmail}
                       placeholder="John@gmail.com"
                       required
@@ -120,7 +158,7 @@ const handleLogin = (e) => {
                       name="email"
                     />
                   </div>
-                  <div className="mb-1 sm:mb-2">
+                  <div className="mb-1 sm:mb-2 relative">
                     <label
                       htmlFor="password"
                       className="inline-block mb-1 font-medium"
@@ -128,25 +166,64 @@ const handleLogin = (e) => {
                       Password
                     </label>
                     <input
+                      ref={passwordRef}
                       onBlur={handlePassword}
                       placeholder="Password"
                       required
-                      type="password"
+                      type={showPass ? "text" : "password"}
                       className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-sky-500 focus:outline-none focus:shadow-outline"
                       id="password"
                       name="password"
                     />
+                    <p
+                      className="absolute top-10 right-3 cursor-pointer"
+                      onClick={() => setShowPass(!showPass)}
+                    >
+                      {!showPass ? (
+                        <AiFillEye size={"24px"} color={"#555"} />
+                      ) : (
+                        <AiFillEyeInvisible size={"24px"} color={"#555"} />
+                      )}
+                    </p>
                   </div>
-                 
-                  <div className="mt-4 mb-2 sm:mb-4">
+                  <div>
+                    <p>
+                      Don't Have an Account?
+                      <Link
+                        className="text-sky-500 animate-bounce inline-block pl-3"
+                        to="/signup"
+                      >
+                        Sign Up Now!
+                      </Link>
+                    </p>
+                  </div>
+                  <p className="mt-3">
+                    Forget Password?
                     <button
+                      onClick={resetPassword}
+                      className=" text-orange-400 inline-block pl-3 hover:text-red-500"
+                    >
+                      Reset Password!!
+                    </button>
+                  </p>
+                  <div className="mt-4 mb-2 sm:mb-4">
+                    <Link
+                      to="/"
                       type="submit"
                       className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-sky-400 hover:bg-sky-700 focus:shadow-outline focus:outline-none"
                     >
                       Login
-                    </button>
+                    </Link>
                   </div>
+                  <p className="mb-3">Log in with one of the following:</p>
+                  <button
+                    className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-sky-400 hover:bg-sky-700 focus:shadow-outline focus:outline-none"
+                    onClick={() => signInWithGoogle()}
+                  >
+                    <FcGoogle size={"24px"} className="mr-3" /> Google
+                  </button>
                 </form>
+                {/* <ToastContainer /> */}
               </div>
             </div>
           </div>

@@ -1,6 +1,10 @@
-import React, { useState } from "react";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import React, { useEffect, useState } from "react";
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import auth from "../../firebase.init";
+import {AiFillEye,AiFillEyeInvisible} from 'react-icons/ai'
+import { FcGoogle } from "react-icons/fc";
 
 const SignUp = () => {
   const [userInfo, setUserInfo] = useState({
@@ -10,7 +14,7 @@ const SignUp = () => {
     confirmPassword: "",
   });
   const [errors, setErrors] = useState({
-    name:"",
+    name: "",
     email: "",
     password: "",
     general: "",
@@ -20,11 +24,11 @@ const SignUp = () => {
 
   const [createUserWithEmailAndPassword, user, loading, hookError] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
-  
+  /* 
     const handleName= (e)=>{
       const name = e.target.value
     }
-
+ */
   const handleEmail = (e) => {
     const emailRegex = /\S+@\S+\.\S+/;
     const validEmail = emailRegex.test(e.target.value);
@@ -64,6 +68,33 @@ const SignUp = () => {
     e.preventDefault();
     createUserWithEmailAndPassword(userInfo.email, userInfo.password);
   };
+
+  const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] = useSignInWithGoogle(auth);
+
+  useEffect(() => {
+    if (hookError) {
+      switch (hookError?.code) {
+        case "auth/invalid-email":
+          toast("Invalid email provided, please provide a valid email");
+          break;
+        case "auth/invalid-password":
+          toast("Wrong password. Intruder!!");
+          break;
+        default:
+          toast("something went wrong");
+      }
+    }
+  }, [hookError]);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+  useEffect(() => {
+    if (user) {
+      navigate(from);
+    }
+  }, [user]);
 
   return (
     <div className="relative">
@@ -112,11 +143,11 @@ const SignUp = () => {
             <div className="w-full max-w-xl xl:px-8 xl:w-5/12">
               <div className="bg-white rounded shadow-2xl p-7 sm:p-10">
                 <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
-                  Sign up for updates
+                Log In for Happy Hearts ❤️
                 </h3>
                 <form onSubmit={handleSignUp}>
                   <div className="mb-1 sm:mb-2">
-                    <label
+                    {/*  <label
                       htmlFor="name"
                       className="inline-block mb-1 font-medium"
                     >
@@ -130,7 +161,7 @@ const SignUp = () => {
                       className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-sky-500 focus:outline-none focus:shadow-outline"
                       id="text"
                       name="name"
-                    />
+                    /> */}
                     <label
                       htmlFor="name"
                       className="inline-block mb-1 font-medium"
@@ -146,23 +177,26 @@ const SignUp = () => {
                       id="email"
                       name="email"
                     />
+                    {errors?.email && <p className="text-red-600">❌ {errors.email}</p>}
                   </div>
-                  <div className="mb-1 sm:mb-2">
+                  <div className="mb-1 sm:mb-2 relative">
                     <label
                       htmlFor="password"
                       className="inline-block mb-1 font-medium"
                     >
                       Password
                     </label>
-                    <input
+                    <input 
                       onBlur={handlePassword}
                       placeholder="Password"
                       required
-                      type="password"
-                      className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-sky-500 focus:outline-none focus:shadow-outline"
+                      type={showPass ? "text" : "password"}
+                      className="  flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-sky-500 focus:outline-none focus:shadow-outline"
                       id="password"
                       name="password"
                     />
+                    {errors?.password && <p className="text-red-600">❌ {errors.password}</p>}
+                    <p className="absolute top-10 right-3 cursor-pointer" onClick={() => setShowPass(!showPass)}>{!showPass?<AiFillEye size={'24px'} color={'#555'}/>:<AiFillEyeInvisible size={'24px'} color={'#555'}/>}</p>
                   </div>
                   <div className="mb-1 sm:mb-2">
                     <label
@@ -181,6 +215,17 @@ const SignUp = () => {
                       name="confirm_password"
                     />
                   </div>
+                  <div>
+                    <p>
+                      Already Have an Account?
+                      <Link
+                        className="text-sky-500 animate-bounce inline-block pl-3"
+                        to="/login"
+                      >
+                        Log In Now!
+                      </Link>
+                    </p>
+                  </div>
                   <div className="mt-4 mb-2 sm:mb-4">
                     <button
                       type="submit"
@@ -189,6 +234,13 @@ const SignUp = () => {
                       Sign Up
                     </button>
                   </div>
+                  <p className="mb-3">Sign Up with the following:</p>
+                  <button
+                    className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-sky-400 hover:bg-sky-700 focus:shadow-outline focus:outline-none"
+                    onClick={() => signInWithGoogle()}
+                  >
+                    <FcGoogle size={"24px"} className="mr-3" /> Google
+                  </button>
                 </form>
               </div>
             </div>
