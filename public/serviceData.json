@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "Personal Help",
-    "price": "$49",
+    "price": "49",
     "service1": "Depression Therapy",
     "service2": "Stress Management",
     "service3": "Anxiety Treatment",
@@ -12,7 +12,7 @@
   {
     "id": 2,
     "name": "Couples Therapy",
-    "price": "$119",
+    "price": "119",
     "service1": "Depression Therapy",
     "service2": "Stress Management",
     "service3": "Anxiety Treatment",
@@ -21,7 +21,7 @@
   {
     "id": 3,
     "name": "Group Therapy",
-    "price": "$145",
+    "price": "145",
     "service1": "Depression Therapy",
     "service2": "Stress Management",
     "service3": "Anxiety Treatment"

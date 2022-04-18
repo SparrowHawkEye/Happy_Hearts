@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "RELATIONSHIP",
+    "img": "https://i.ibb.co/9g57dkX/relationship.png",
+    "description": "A therapy that helps establish a more profound ground for healthy relationship."
+  },
+  {
+    "id": 2,
+    "name": "MENTAL HEALTH",
+    "img": "https://i.ibb.co/jHX29SZ/mental.png",
+    "description": "Improve your focus, relieve stress and anxiety, and develop creativity."
+  },
+  {
+    "id": 3,
+    "name": "FEELINGS",
+    "img": "https://i.ibb.co/QKNS0xy/feelings.png",
+    "description": "Achieve a better level of your well-being and the ability to manage feelings."
+  },
+  {
+    "id": 4,
+    "name": "CONFLICTING",
+    "img": "https://i.ibb.co/pzJPtt4/conflicting.png",
+    "description": "Invaluable insight into the knowledge of reducing conflict in relationship."
+  },
+  {
+    "id": 5,
+    "name": "MEDITATION",
+    "img": "https://i.ibb.co/kMvWdDD/meditation.png",
+    "description": "Learn how to deal with difficult emotions and feelings by using healthy strategies."
+  },
+  {
+    "id": 6,
+    "name": "DEPRESSION",
+    "img": "https://i.ibb.co/S7SGw9v/depression.png",
+    "description": "If your depression is keeping you from living your life don’t hesitate to seek help."
+  },
+  {
+    "id": 7,
+    "name": "MIND GAMES",
+    "img": "https://i.ibb.co/wJSydcD/mind.png",
+    "description": "It is crucial to understand how to prevent others from playing such games with you."
+  },
+  {
+    "id": 8,
+    "name": "RELAXATION",
+    "img": "https://i.ibb.co/fk1PXrV/relaxation.png",
+    "description": "Focus your attention on calmness and increase your personal awareness."
+  }
+]
