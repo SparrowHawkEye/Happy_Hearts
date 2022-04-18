@@ -4,7 +4,7 @@ import {
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from 'react-toastify';
 import auth from "../../firebase.init";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
@@ -197,6 +197,7 @@ const SignUp = () => {
                     {errors?.password && (
                       <p className="text-red-600">❌ {errors.password}</p>
                     )}
+                    <ToastContainer></ToastContainer>
                     <p
                       className="absolute top-10 right-3 cursor-pointer"
                       onClick={() => setShowPass(!showPass)}
