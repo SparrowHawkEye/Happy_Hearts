@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from "react-firebase-hooks/auth";
+import {
+  useCreateUserWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
-import {AiFillEye,AiFillEyeInvisible} from 'react-icons/ai'
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
+import Loading from "../../Shared/RequiredAuth/Loading";
 
 const SignUp = () => {
   const [userInfo, setUserInfo] = useState({
@@ -69,7 +73,8 @@ const SignUp = () => {
     createUserWithEmailAndPassword(userInfo.email, userInfo.password);
   };
 
-  const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] = useSignInWithGoogle(auth);
+  const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] =
+    useSignInWithGoogle(auth);
 
   useEffect(() => {
     if (hookError) {
@@ -96,6 +101,10 @@ const SignUp = () => {
     }
   }, [user]);
 
+  if (loading) {
+    return <Loading></Loading>;
+  }
+
   return (
     <div className="relative">
       <img
@@ -103,7 +112,7 @@ const SignUp = () => {
         className="absolute inset-0 object-cover w-full h-full"
         alt=""
       />
-      <div className="relative bg-opacity-75 bg-sky-200">
+      <div className="relative bg-opacity-75 bg-slate-50">
         <svg
           className="absolute inset-x-0 bottom-0 text-white"
           viewBox="0 0 1160 163"
@@ -116,19 +125,22 @@ const SignUp = () => {
         <div className="relative px-4 py-16 mx-auto overflow-hidden sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
           <div className="flex flex-col items-center justify-between xl:flex-row">
             <div className="w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12">
-              <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
-                The quick, brown fox <br className="hidden md:block" />
-                jumps over a lazy dog
+              <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-blue-900 sm:text-4xl sm:leading-none">
+                Never Be upset with something{" "}
+                <br className="hidden md:block " />
+                Always Make a Smile.
               </h2>
-              <p className="max-w-xl mb-4 text-base text-gray-200 md:text-lg">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudan, totam rem aperiam, eaque ipsa
-                quae.
+              <p className="max-w-xl mb-4 text-base text-dark-200 md:text-lg">
+                I never tried to prove nothing, just wanted to give a good show.
+                My life has always been my music, it's always come first, but
+                the music ain't worth nothing if you can't lay it on the public.
+                The main thing is to live for that audience, 'cause what you're
+                there for is to please the people.
               </p>
               <a
                 href="/"
                 aria-label=""
-                className="inline-flex items-center font-semibold tracking-wider transition-colors duration-200 text-sky-500 hover:text-sky-700"
+                className="inline-flex items-center font-semibold tracking-wider transition-colors duration-200 text-blue-700 hover:text-blue-900"
               >
                 Learn more
                 <svg
@@ -143,25 +155,10 @@ const SignUp = () => {
             <div className="w-full max-w-xl xl:px-8 xl:w-5/12">
               <div className="bg-white rounded shadow-2xl p-7 sm:p-10">
                 <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
-                Log In for Happy Hearts ❤️
+                  Log In for Happy Hearts ❤️
                 </h3>
                 <form onSubmit={handleSignUp}>
                   <div className="mb-1 sm:mb-2">
-                    {/*  <label
-                      htmlFor="name"
-                      className="inline-block mb-1 font-medium"
-                    >
-                      Name
-                    </label>
-                    <input
-                      onBlur={handleName}
-                      placeholder="John@gmail.com"
-                      required
-                      type="text"
-                      className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-sky-500 focus:outline-none focus:shadow-outline"
-                      id="text"
-                      name="name"
-                    /> */}
                     <label
                       htmlFor="name"
                       className="inline-block mb-1 font-medium"
@@ -177,7 +174,9 @@ const SignUp = () => {
                       id="email"
                       name="email"
                     />
-                    {errors?.email && <p className="text-red-600">❌ {errors.email}</p>}
+                    {errors?.email && (
+                      <p className="text-red-600">{errors.email}</p>
+                    )}
                   </div>
                   <div className="mb-1 sm:mb-2 relative">
                     <label
@@ -186,7 +185,7 @@ const SignUp = () => {
                     >
                       Password
                     </label>
-                    <input 
+                    <input
                       onBlur={handlePassword}
                       placeholder="Password"
                       required
@@ -195,8 +194,19 @@ const SignUp = () => {
                       id="password"
                       name="password"
                     />
-                    {errors?.password && <p className="text-red-600">❌ {errors.password}</p>}
-                    <p className="absolute top-10 right-3 cursor-pointer" onClick={() => setShowPass(!showPass)}>{!showPass?<AiFillEye size={'24px'} color={'#555'}/>:<AiFillEyeInvisible size={'24px'} color={'#555'}/>}</p>
+                    {errors?.password && (
+                      <p className="text-red-600">❌ {errors.password}</p>
+                    )}
+                    <p
+                      className="absolute top-10 right-3 cursor-pointer"
+                      onClick={() => setShowPass(!showPass)}
+                    >
+                      {!showPass ? (
+                        <AiFillEye size={"24px"} color={"#555"} />
+                      ) : (
+                        <AiFillEyeInvisible size={"24px"} color={"#555"} />
+                      )}
+                    </p>
                   </div>
                   <div className="mb-1 sm:mb-2">
                     <label

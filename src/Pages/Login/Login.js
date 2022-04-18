@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
   useCreateUserWithEmailAndPassword,
+  useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
@@ -10,6 +11,7 @@ import auth from "../../firebase.init";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { sendPasswordResetEmail } from "firebase/auth";
+import Loading from "../../Shared/RequiredAuth/Loading";
 
 const Login = () => {
   const [userInfo, setUserInfo] = useState({
@@ -29,6 +31,7 @@ const Login = () => {
     useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] =
     useSignInWithGoogle(auth);
+    const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
   const location = useLocation();
   let from = location.state?.from?.pathname || "/";
   
@@ -71,7 +74,7 @@ const Login = () => {
   const resetPassword = async () => {
     const email = emailRef.current.value;
     await sendPasswordResetEmail(email);
-    alert("Sent email");
+    toast("Sent email");
   };
 
   useEffect(() => {
@@ -91,6 +94,11 @@ const Login = () => {
     }
   }, [hookError, errorGoogle]);
 
+  
+  if(loading){
+    return <Loading></Loading>
+  }
+
   return (
     <div className="relative">
       <img
@@ -98,7 +106,7 @@ const Login = () => {
         className="absolute inset-0 object-cover w-full h-full"
         alt=""
       />
-      <div className="relative bg-opacity-75 bg-sky-200">
+      <div className="relative bg-opacity-75 bg-slate-50">
         <svg
           className="absolute inset-x-0 bottom-0 text-white"
           viewBox="0 0 1160 163"
@@ -111,19 +119,17 @@ const Login = () => {
         <div className="relative px-4 py-16 mx-auto overflow-hidden sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
           <div className="flex flex-col items-center justify-between xl:flex-row">
             <div className="w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12">
-              <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
-                The quick, brown fox <br className="hidden md:block" />
-                jumps over a lazy dog
+            <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-blue-900 sm:text-4xl sm:leading-none">
+                Never Be upset with something <br className="hidden md:block " />
+                Always Make a Smile.
               </h2>
-              <p className="max-w-xl mb-4 text-base text-gray-200 md:text-lg">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudan, totam rem aperiam, eaque ipsa
-                quae.
+              <p className="max-w-xl mb-4 text-base text-dark-200 md:text-lg">
+              I never tried to prove nothing, just wanted to give a good show. My life has always been my music, it's always come first, but the music ain't worth nothing if you can't lay it on the public. The main thing is to live for that audience, 'cause what you're there for is to please the people.
               </p>
               <a
                 href="/"
                 aria-label=""
-                className="inline-flex items-center font-semibold tracking-wider transition-colors duration-200 text-sky-500 hover:text-sky-700"
+                className="inline-flex items-center font-semibold tracking-wider transition-colors duration-200 text-blue-700 hover:text-blue-900"
               >
                 Learn more
                 <svg
@@ -224,7 +230,7 @@ const Login = () => {
                     <FcGoogle size={"24px"} className="mr-3" /> Google
                   </button>
                 </form>
-                {/* <ToastContainer /> */}
+                <ToastContainer />
               </div>
             </div>
           </div>
