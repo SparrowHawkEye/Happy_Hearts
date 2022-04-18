@@ -2,14 +2,20 @@ import { signOut } from "firebase/auth";
 import React from "react";
 import logo from '../../images/logo.svg'
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
+import { Link,NavLink } from "react-router-dom";
 import auth from "../../firebase.init";
 import "./Header.css";
 import userPicture from '../../images/user.png'
 import userLoggedInPicture from '../../images/loginuser.jpg'
 const Header = () => {
   const [user] = useAuthState(auth);
-  console.log(user);
+  
+  let activeStyle = {
+    // textDecoration: "underline",
+    color: "#0EA5E9"
+
+  };
+
   return (
     <div>
       <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
@@ -124,45 +130,55 @@ const Header = () => {
           >
             <ul className="flex flex-col  w-full mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
               <li>
-                <Link
+                <NavLink style={({ isActive }) =>
+                  isActive ? activeStyle : undefined
+                }
                   to="/home"
                   className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-sky-500 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                   // aria-current="step"
                 >
                   Home
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link
+                <NavLink style={({ isActive }) =>
+                  isActive ? activeStyle : undefined
+                }
                   to="/blogs"
                   className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-sky-500 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 >
                   Blogs
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link
+                <NavLink style={({ isActive }) =>
+                  isActive ? activeStyle : undefined
+                }
                   to="/about"
                   className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-sky-500 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 >
                   About
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link
+                <NavLink style={({ isActive }) =>
+                  isActive ? activeStyle : undefined
+                }
                   to="/login"
                   className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-sky-500 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 >
                   Log In
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link
+                <NavLink style={({ isActive }) =>
+                  isActive ? activeStyle : undefined
+                }
                   to="/signup"
                   className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-sky-500 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 >
                   Sign Up
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </div>

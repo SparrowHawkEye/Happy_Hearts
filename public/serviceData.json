@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "name": "Personal Help",
+    "price": "$49",
+    "service1": "Depression Therapy",
+    "service2": "Stress Management",
+    "service3": "Anxiety Treatment",
+    "service4": "Individual Coaching",
+    "service5": "Post-Divorce Recovery"
+  },
+  {
+    "id": 2,
+    "name": "Couples Therapy",
+    "price": "$119",
+    "service1": "Depression Therapy",
+    "service2": "Stress Management",
+    "service3": "Anxiety Treatment",
+    "service4": "Post-Divorce Recovery"
+  },
+  {
+    "id": 3,
+    "name": "Group Therapy",
+    "price": "$145",
+    "service1": "Depression Therapy",
+    "service2": "Stress Management",
+    "service3": "Anxiety Treatment"
+  }
+]
