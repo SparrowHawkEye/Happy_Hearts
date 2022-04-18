@@ -1,3 +1,17 @@
+# Assignment 10
+
+## [Live Site Link](https://happy-hearts-sparrow.web.app/)
+
+> About this project:
+
+- This Project is a portfolio site of a Psychologist.
+- Where the Patient can see the Psychologist's provided services and can contact him.
+- This is a practice project on 'React.js' 'React Routing', 'React Hooks' and 'Firebase Authentication'.
+- Tailwind CSS is used for styling
+- JSON file is used to store the data of Services the doctor Provided.
+- Json File is used to store the data of the Offer the Doctor Provided.
+- Custom Hook is used for fetching data from API.
+
 # Task Description:
 
 We are looking for a web developer who can build websites for an Independent Service Provider. You must be familiar with `React`, `firebase`, `react router`, etc.
@@ -14,11 +28,11 @@ Here is the task that you need to do.
 
 3. Give your website a name. The name should appear on the website and be displayed on the website's title. ✅
 4. Home page will have a header (simple navbar), banner, services section, and a footer. The banner could be static or a carousel. Either one will be alright. ✅
-5. Add One extra section on the home page in addition to the 4 sections (header, banner, services, and footer) mentioned above.
+5. Add One extra section on the home page in addition to the 4 sections (header, banner, services, and footer) mentioned above.✅
 
 ---
 
-6. The Services section will have at least 3 services. You can put one, two, or more services in a row based on your design. Each service should have a relevant name, price, image, short description, and a specific button.
+6. The Services section will have at least 3 services. You can put one, two, or more services in a row based on your design. Each service should have a relevant name, price, image, short description, and a specific button.✅
 
 7. Clicking on the button will take the user to the Checkout route. This route will be private/protected routes. Please make sure that the private route redirects to the login page if the user is not logged in. After login, the user will be redirected to the checkout page
 

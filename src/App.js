@@ -7,8 +7,11 @@ import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
 import NotFound from "./Pages/NotFound/NotFound";
 import SignUp from "./Pages/SignUp/SignUp";
+import CheckOut from "./Shared/CheckOut/CheckOut";
+import CheckOutDetails from "./Shared/CheckOut/CheckOutDetails";
 import Footer from "./Shared/Footer/Footer";
 import Header from "./Shared/Header/Header";
+import RequiredAuth from "./Shared/RequiredAuth/RequiredAuth";
 
 function App() {
   return (
@@ -21,6 +24,12 @@ function App() {
         <Route path="/about" element={<About />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
+        <Route path="/service/:checkoutId" element={<CheckOutDetails />} />
+        <Route path="/checkout" element={
+        <RequiredAuth>
+          <CheckOut/>
+        </RequiredAuth>
+        }/>
         <Route path="*" element={<NotFound/>}></Route>
       </Routes>
       <Footer />

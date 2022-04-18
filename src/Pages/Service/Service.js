@@ -1,11 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Service = (props) => {
-  const { id, name, price, service1, service2, service3, service4, service5 } =
+  const { id, name, img,price, service1, service2, service3, service4, service5 } =
     props.service;
+
+    const navigate =useNavigate();
+    const navigateToServiceDetail = id =>{
+      navigate(`/service/${id}`)
+    }
   return (
     <div>
-      <div  className=" relative h-[450px] p-4 max-w-sm bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+      <div  className=" relative h-[640px] p-4 max-w-sm bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+        <img className="mb-4" src={img} alt="" />
         <h5 className="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">
           {name}
         </h5>
@@ -110,9 +117,9 @@ const Service = (props) => {
           )}
         </ul>
         <div>
-          <button
+          <button onClick={()=>navigateToServiceDetail(id)}
             type="button"
-            className="text-white absolute bottom-5 left-[50%] translate-x-[-50%] mx-auto bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-[75%] text-center"
+            className="text-white absolute bottom-5 left-[50%] translate-x-[-50%] mx-auto bg-sky-500 hover:bg-sky-700 focus:ring-4 focus:outline-none focus:ring-sky-200 dark:focus:ring-sky-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-[75%] text-center"
           >
             Make An Appointment
           </button>

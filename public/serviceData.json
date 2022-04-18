@@ -2,6 +2,7 @@
   {
     "id": 1,
     "name": "Personal Help",
+    "img": "https://i.ibb.co/YWmP22t/3.jpg",
     "price": "49",
     "service1": "Depression Therapy",
     "service2": "Stress Management",
@@ -12,6 +13,7 @@
   {
     "id": 2,
     "name": "Couples Therapy",
+    "img": "https://i.ibb.co/kM8tkN4/2.jpg",
     "price": "119",
     "service1": "Depression Therapy",
     "service2": "Stress Management",
@@ -21,6 +23,7 @@
   {
     "id": 3,
     "name": "Group Therapy",
+    "img": "https://i.ibb.co/pXFrTwr/1.jpg",
     "price": "145",
     "service1": "Depression Therapy",
     "service2": "Stress Management",

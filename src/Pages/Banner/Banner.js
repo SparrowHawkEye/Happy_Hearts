@@ -1,68 +1,34 @@
-import React from 'react';
-import {MdOutlineCamera} from 'react-icons/md'
-
+import React from "react";
+import { FcMindMap } from "react-icons/fc";
+import './Banner.css'
 const Banner = () => {
   return (
     <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 bg-slate-100">
       <div className="grid gap-10 lg:grid-cols-2">
         <div className="flex flex-col justify-center md:pr-8 xl:pr-0 lg:max-w-lg">
           <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-teal-accent-400">
-            <MdOutlineCamera size={'48px'} className='text-sky-500'/>
-            {/* <svg className="text-teal-900 w-7 h-7" viewBox="0 0 24 24">
-              <polyline
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeMiterlimit="10"
-                points=" 8,5 8,1 16,1 16,5"
-                strokeLinejoin="round"
-              />
-              <polyline
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeMiterlimit="10"
-                points="9,15 1,15 1,5 23,5 23,15 15,15"
-                strokeLinejoin="round"
-              />
-              <polyline
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeMiterlimit="10"
-                points="22,18 22,23 2,23 2,18"
-                strokeLinejoin="round"
-              />
-              <rect
-                x="9"
-                y="13"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeMiterlimit="10"
-                width="6"
-                height="4"
-                strokeLinejoin="round"
-              />
-            </svg> */}
+            <FcMindMap size={"48px"} className="text-sky-500" />
           </div>
           <div className="max-w-xl mb-6">
             <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
-              Let us handle
+              Welcome to
               <br className="hidden md:block" />
-              your next{' '}
               <span className="inline-block text-sky-500">
-                destination
+                Psychologist & Family Consulting
               </span>
             </h2>
             <p className="text-base text-gray-700 md:text-lg">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-              quae. explicabo.
+              It's my goal to create a comfortable, safe environment, where
+              we'll work to achieve the goal together. I am a certified
+              specialist in the branch of psychology concerned with the
+              assessment and treatment of mental illness and behavioural
+              problems. My other passion is publishing. You can find and
+              purchase all my books within this site.
+            </p>
+
+            <p className="name">Dr. Maksudur Rahman</p>
+            <p>
+              <small>Psychologist</small>
             </p>
           </div>
           <div>

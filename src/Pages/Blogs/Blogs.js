@@ -26,8 +26,13 @@ const Blogs = () => {
             <hr className="mt-3" />
           </h5>
           <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-          Firebase offers numerous easy-to-use SDKs, efficient back-end services, and user interface libraries for authenticating the users on the application Firebase is more. Having a real-time database is the standout feature of the Firebase framework.Firebase provides a seamless way to integrate with Google analytics using which the user behavioral data can be acquired, and insightful information can be generated through it
-            popular for doing these things. But there are alternatives for :
+            Firebase offers numerous easy-to-use SDKs, efficient back-end
+            services, and user interface libraries for authenticating the users
+            on the application. Having a real-time database is the standout
+            feature of the Firebase framework. Firebase provides a seamless way
+            to integrate with Google analytics using which the user behavioral
+            data can be acquired, and insightful information can be generated
+            through it and for many other features Firebase is popular. But there are some alternatives for authentication tools of firebase which are:
           </p>
           <ul>
             <li> &rarr; Auth0</li>
