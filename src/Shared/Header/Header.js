@@ -1,5 +1,6 @@
 import { signOut } from "firebase/auth";
 import React from "react";
+import logo from '../../images/logo.svg'
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import auth from "../../firebase.init";
@@ -15,7 +16,7 @@ const Header = () => {
         <div className="container flex flex-wrap justify-between items-center mx-auto">
           <Link to="/" className="flex items-center">
             <img
-              src="/docs/images/logo.svg"
+              src={logo}
               className="mr-3 h-6 sm:h-9"
               alt="Happy Hearts Logo"
             />

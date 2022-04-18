@@ -5,13 +5,14 @@ import About from "./Pages/About/About";
 import Blogs from "./Pages/Blogs/Blogs";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
+import NotFound from "./Pages/NotFound/NotFound";
 import SignUp from "./Pages/SignUp/SignUp";
 import Footer from "./Shared/Footer/Footer";
 import Header from "./Shared/Header/Header";
 
 function App() {
   return (
-    <>
+    <div >
       <Header />
       <Routes>
         <Route path="/" element={<Home />}></Route>
@@ -20,9 +21,10 @@ function App() {
         <Route path="/about" element={<About />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
+        <Route path="*" element={<NotFound/>}></Route>
       </Routes>
       <Footer />
-    </>
+    </div>
   );
 }
 

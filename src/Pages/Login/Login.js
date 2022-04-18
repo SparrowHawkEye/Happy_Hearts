@@ -64,15 +64,16 @@ const Login = () => {
     signInWithEmail(userInfo.email, userInfo.password);
   };
 
-  if (user) {
+ /*  if (user) {
     Navigate(from, { replace: true });
   }
-
+ */
   const resetPassword = async () => {
     const email = emailRef.current.value;
     await sendPasswordResetEmail(email);
     alert("Sent email");
   };
+
   useEffect(() => {
     const error = hookError || errorGoogle;
     if (error) {
@@ -207,13 +208,13 @@ const Login = () => {
                     </button>
                   </p>
                   <div className="mt-4 mb-2 sm:mb-4">
-                    <Link
-                      to="/"
+                    <button
+                      // to="/"
                       type="submit"
                       className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-sky-400 hover:bg-sky-700 focus:shadow-outline focus:outline-none"
                     >
                       Login
-                    </Link>
+                    </button>
                   </div>
                   <p className="mb-3">Log in with one of the following:</p>
                   <button
