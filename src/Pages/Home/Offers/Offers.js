@@ -1,6 +1,8 @@
 import React from "react";
-import useOffersData from "../../Hooks/useOffersData";
+import useOffersData from "../../../Hooks/useOffersData";
+
 import Offer from "../Offer/Offer";
+
 
 const Offers = () => {
   const [offers, setOffersData] = useOffersData([]);

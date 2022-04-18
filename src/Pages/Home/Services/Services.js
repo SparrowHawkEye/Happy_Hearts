@@ -1,5 +1,6 @@
 import React from "react";
-import useDatas from "../../Hooks/useData";
+import useDatas from "../../../Hooks/useData";
+
 import Service from "../Service/Service";
 
 const Services = () => {
